@@ -1,4 +1,5 @@
 import { UsuarioModel } from '../models/UsuarioModel.js';
+import { app } from '../server.js';
 
 export class UsuarioController {
   static async registrar(request, reply) {
@@ -59,10 +60,10 @@ export class UsuarioController {
         });
       }
 
-      const token = request.jwtSign({
+      // Gerar token JWT com payload mínimo
+      const token = app.jwt.sign({
         id: usuario.id,
-        email: usuario.email,
-        nome: usuario.nome
+        email: usuario.email
       });
 
       return reply.send({
@@ -75,9 +76,11 @@ export class UsuarioController {
         }
       });
     } catch (erro) {
-      console.error('Erro ao fazer login:', erro);
+      console.error('Erro ao fazer login:', erro.message || erro);
+      console.error('Stack:', erro.stack);
       return reply.code(500).send({ 
-        erro: 'Erro ao fazer login' 
+        erro: 'Erro ao fazer login',
+        debug: erro.message
       });
     }
   }
