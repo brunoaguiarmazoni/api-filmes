@@ -60,11 +60,14 @@ export class UsuarioController {
         });
       }
 
-      // Gerar token JWT com payload mínimo
-      const token = app.jwt.sign({
-        id: usuario.id,
-        email: usuario.email
-      });
+      // Gerar token JWT com expiração de 20 minutos
+      const token = app.jwt.sign(
+        {
+          id: usuario.id,
+          email: usuario.email
+        },
+        { expiresIn: '20m' }
+      );
 
       return reply.send({
         mensagem: 'Login realizado com sucesso',
