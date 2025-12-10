@@ -59,7 +59,7 @@ export class UsuarioController {
         });
       }
 
-      const token = reply.jwtSign({
+      const token = request.jwtSign({
         id: usuario.id,
         email: usuario.email,
         nome: usuario.nome
