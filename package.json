@@ -1,0 +1,41 @@
+{
+  "name": "api-filmes",
+  "version": "1.0.0",
+  "description": "API REST de gerenciamento de filmes com autenticação",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node src/server.js",
+    "seed": "node seed.js",
+    "test": "vitest && node cleanup.js",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage && node cleanup.js",
+    "cleanup": "node cleanup.js",
+    "migrate:make": "knex migrate:make --knexfile knexfile.js",
+    "migrate:latest": "knex migrate:latest --knexfile knexfile.js",
+    "migrate:rollback": "knex migrate:rollback --knexfile knexfile.js",
+    "migrate:status": "knex migrate:status --knexfile knexfile.js"
+  },
+  "keywords": [
+    "api",
+    "fastify",
+    "sqlite",
+    "filme"
+  ],
+  "author": "Bruno",
+  "license": "MIT",
+  "dependencies": {
+    "@fastify/cors": "^9.0.1",
+    "@fastify/jwt": "^8.0.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.6.1",
+    "fastify": "^4.28.1",
+    "knex": "^3.1.0",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^1.6.1",
+    "@vitest/ui": "^1.0.4",
+    "vitest": "^1.0.4"
+  }
+}
