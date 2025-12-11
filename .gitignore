@@ -2,8 +2,7 @@
 node_modules/
 
 # Database files (keep production only)
-data/*.db
-!data/filmes.db
+
 *.sqlite
 *.sqlite3
 
